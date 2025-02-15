@@ -15,7 +15,7 @@
 
 - name: Symlink aliases to home directory
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/../.zsh/.aliases"
-    dest: "{{ ansible_env.HOME }}/.zsh/.aliases"
+    src: "{{ playbook_dir }}/../.zsh/aliases.zsh"
+    dest: "{{ ansible_env.HOME }}/.zsh/aliases.zsh"
     state: link
     force: yes
