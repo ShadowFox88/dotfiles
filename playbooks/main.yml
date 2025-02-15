@@ -7,31 +7,39 @@
       include_tasks: packages/install_packages.yml
     
     - name: Include dust installation
-      include_tasks: packages/install_dust.yml
-      apply:
-        become: true
+      include_tasks: 
+        file: packages/install_dust.yml
+        apply:
+          become: true
 
     - name: Include Starship installation
-      include_tasks: packages/install_starship.yml
+      include_tasks: 
+        file: packages/install_starship.yml
 
     - name: Include Oh My Zsh installation
-      include_tasks: packages/install_ohmyzsh.yml
+      include_tasks: 
+        file: packages/install_ohmyzsh.yml
 
     - name: Include Atuin installation
-      include_tasks: packages/install_atuin.yml
+      include_tasks: 
+        file: packages/install_atuin.yml
 
     - name: Include Act installation
-      include_tasks: packages/install_act.yml
+      include_tasks: 
+        file: packages/install_act.yml
 
     - name: Setup Docker repository and install Docker packages
-      include_tasks: packages/setup_docker.yml
-      apply:
-        become: true
+      include_tasks: 
+        file: packages/setup_docker.yml
+        apply:
+          become: true
 
     - name: Setup Tailscale repository and install Tailscale package
-      include_tasks: packages/setup_tailscale.yml
-      apply:
-        become: true
+      include_tasks: 
+        file: packages/setup_tailscale.yml
+        apply:
+          become: true
 
     - name: Symlink .zshrc and .config
-      include_tasks: dotfiles/symlink_dotfiles.yml
+      include_tasks: 
+        file: dotfiles/symlink_dotfiles.yml
