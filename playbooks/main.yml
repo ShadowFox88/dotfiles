@@ -5,6 +5,9 @@
   tasks:
     - name: Include main package installation
       include_tasks: packages/install_packages.yml
+    
+    - name: Include dust installation
+      include_tasks: packages/install_dust.yml
 
     - name: Include Starship installation
       include_tasks: packages/install_starship.yml

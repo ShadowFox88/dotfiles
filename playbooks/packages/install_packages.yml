@@ -9,7 +9,6 @@
       - git
       - fzf
       - gh
-      - dust
       - zsh-autosuggestions
       - ca-certificates
       - curl
