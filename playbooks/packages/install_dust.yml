@@ -25,7 +25,7 @@
 - name: Copy the dust binary to /usr/bin
   become: yes
   copy:
-    src: "/tmp/dust-{{ dust_version }}-x86_64-unknown-linux-musl.tar.gz/dust"
+    src: "/tmp/dust-{{ dust_version }}-x86_64-unknown-linux-musl/dust"
     dest: "/usr/bin/dust"
     mode: '0755'
 
