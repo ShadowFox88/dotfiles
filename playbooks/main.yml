@@ -1,0 +1,28 @@
+---
+- name: Run all playbooks
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Include main package installation
+      include_tasks: packages/install_packages.yml
+
+    - name: Include Starship installation
+      include_tasks: packages/install_starship.yml
+
+    - name: Include Oh My Zsh installation
+      include_tasks: packages/install_ohmyzsh.yml
+
+    - name: Include Atuin installation
+      include_tasks: packages/install_atuin.yml
+
+    - name: Include Act installation
+      include_tasks: packages/install_act.yml
+
+    - name: Setup Docker repository and install Docker packages
+      include_tasks: packages/setup_docker.yml
+
+    - name: Setup Tailscale repository and install Tailscale package
+      include_tasks: packages/setup_tailscale.yml
+
+    - name: Symlink .zshrc and .config
+      include_tasks: dotfiles/symlink_dotfiles.yml

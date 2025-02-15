@@ -1,0 +1,27 @@
+---
+- name: Install required basic packages
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install common packages via apt
+      apt:
+        name:
+          - zsh
+          - nano
+          - eza
+          - git
+          - fzf
+          - github-cli
+          - dust
+          - zsh-autosuggestions
+          - ca-certificates
+          - curl
+          - vim
+          - ufw
+          - fail2ban
+          - jq
+          - clang
+          - g++
+          - build-essential
+        state: present
+        update_cache: true

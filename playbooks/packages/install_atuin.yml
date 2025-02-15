@@ -1,0 +1,17 @@
+---
+- name: Install Atuin
+  hosts: localhost
+  tasks:
+    - name: Download Atuin install script
+      get_url:
+        url: https://setup.atuin.sh
+        dest: /tmp/atuin-install.sh
+        mode: '0755'
+
+    - name: Run Atuin install script
+      command: sh /tmp/atuin-install.sh
+
+    - name: Remove Atuin install script
+      file:
+        path: /tmp/atuin-install.sh
+        state: absent

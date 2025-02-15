@@ -1,0 +1,17 @@
+---
+- name: Install Starship prompt
+  hosts: localhost
+  tasks:
+    - name: Download Starship install script
+      get_url:
+        url: https://starship.rs/install.sh
+        dest: /tmp/starship-install.sh
+        mode: '0755'
+
+    - name: Run Starship install script
+      command: sh /tmp/starship-install.sh
+
+    - name: Remove Starship install script
+      file:
+        path: /tmp/starship-install.sh
+        state: absent
