@@ -1,5 +1,5 @@
 ---
-- name: Ensure default shell is /bin/bash for "{{ ansible_user }}"
+- name: Ensure default shell is /bin/zsh for "{{ ansible_user_id }}"
   ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    shell: /bin/bash
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
