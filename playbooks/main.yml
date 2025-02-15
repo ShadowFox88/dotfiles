@@ -3,28 +3,28 @@
   hosts: localhost
   gather_facts: true
   tasks:
-    - name: Include main package installation
+    - name: Install Packages
       include_tasks: packages/install_packages.yml
     
-    - name: Include dust installation
+    - name: Install Dust
       include_tasks: 
         file: packages/install_dust.yml
         apply:
           become: true
 
-    - name: Include Starship installation
+    - name: Install Starship
       include_tasks: 
         file: packages/install_starship.yml
 
-    - name: Include Oh My Zsh installation
+    - name: Install Oh My Zsh
       include_tasks: 
         file: packages/install_ohmyzsh.yml
 
-    - name: Include Atuin installation
+    - name: Install Atuin
       include_tasks: 
         file: packages/install_atuin.yml
 
-    - name: Include Act installation
+    - name: Install Act
       include_tasks: 
         file: packages/install_act.yml
 
