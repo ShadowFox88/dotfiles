@@ -35,13 +35,6 @@
   ignore_errors: true
   when: tailscale_installed.rc == 0
 
-- name: Prompt for Tailscale authkey if logged out
-  vars_prompt:
-    - name: "tailscale_authkey"
-      prompt: "Please enter your Tailscale authkey"
-      private: yes
-  when: "'Logged out' in tailscale_status.stdout"
-
 - name: Run sudo tailscale up with authkey if needed
   become: yes
   command: tailscale up --authkey={{ tailscale_authkey }}
