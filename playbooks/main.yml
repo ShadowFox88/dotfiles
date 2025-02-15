@@ -49,3 +49,7 @@
     - name: Symlink dotfiles
       include_tasks: 
         file: dotfiles/symlink_dotfiles.yml
+      
+    - name: Change Default shell
+      include_tasks: 
+        file: dotfiles/change_shell.yml

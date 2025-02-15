@@ -1,4 +1,9 @@
 ---
+- name: Check if Dust is installed using which
+  command: which dust
+  register: dust_installed
+  ignore_errors: true
+
 - name: Get the latest release version of dust from GitHub
   uri:
     url: "https://api.github.com/repos/bootandy/dust/releases/latest"
@@ -6,21 +11,25 @@
     headers:
       Accept: "application/vnd.github.v3+json"
   register: release_info
+  when: dust_installed.rc != 0
 
 - name: Extract dust version from GitHub release
   set_fact:
     dust_version: "{{ release_info.json.tag_name }}"
+  when: dust_installed.rc != 0
 
 - name: Download the dust binary tarball
   get_url:
     url: "https://github.com/bootandy/dust/releases/download/{{ dust_version }}/dust-{{ dust_version }}-x86_64-unknown-linux-musl.tar.gz"
     dest: "/tmp/dust-{{ dust_version }}.tar.gz"
+  when: dust_installed.rc != 0
 
 - name: Extract the tarball
   unarchive:
     src: "/tmp/dust-{{ dust_version }}.tar.gz"
     dest: "/tmp/"
     remote_src: yes
+  when: dust_installed.rc != 0
 
 - name: Copy the dust binary to /usr/bin
   become: yes
@@ -28,9 +37,11 @@
     src: "/tmp/dust-{{ dust_version }}-x86_64-unknown-linux-musl/dust"
     dest: "/usr/bin/dust"
     mode: '0755'
+  when: dust_installed.rc != 0
 
 
 - name: Clean up the tarball and extracted files
   file:
     path: "/tmp/dust-{{ dust_version }}.tar.gz"
     state: absent
+  when: dust_installed.rc != 0

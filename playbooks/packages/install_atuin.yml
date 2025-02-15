@@ -1,15 +1,22 @@
 ---
+- name: Check if Atuin is installed using which
+  command: which atuin
+  register: atuin_installed
+  ignore_errors: true
 
 - name: Download Atuin install script
   get_url:
     url: https://setup.atuin.sh
     dest: /tmp/atuin-install.sh
     mode: '0755'
+  when: atuin_installed.rc != 0
 
 - name: Run Atuin install script
   command: sh /tmp/atuin-install.sh
+  when: atuin_installed.rc != 0
 
 - name: Remove Atuin install script
   file:
     path: /tmp/atuin-install.sh
     state: absent
+  when: atuin_installed.rc != 0

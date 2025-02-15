@@ -1,14 +1,22 @@
 ---
+- name: Check if Act is installed using which
+  command: which act
+  register: act_installed
+  ignore_errors: true
+
 - name: Download Act install script
   get_url:
     url: https://raw.githubusercontent.com/nektos/act/master/install.sh
     dest: /tmp/act-install.sh
     mode: '0755'
+  when: act_installed.rc != 0
 
 - name: Run Act install script
-  command: sh /tmp/act-install.sh
+  command: sh /tmp/act-install.sh -b /usr/bin
+  when: act_installed.rc != 0
 
 - name: Remove Act install script
   file:
     path: /tmp/act-install.sh
     state: absent
+  when: act_installed.rc != 0
