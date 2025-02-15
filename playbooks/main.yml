@@ -2,6 +2,12 @@
 - name: Run all playbooks
   hosts: localhost
   gather_facts: true
+
+  vars_prompt:
+    - name: "tailscale_authkey"
+      prompt: "Please enter your Tailscale authkey"
+      private: true
+
   tasks:
     - name: Install Packages
       include_tasks: packages/install_packages.yml
@@ -33,12 +39,6 @@
         file: packages/setup_docker.yml
         apply:
           become: true
-
-    - name: Prompt for Tailscale authkey if logged out
-      vars_prompt:
-        - name: "tailscale_authkey"
-          prompt: "Please enter your Tailscale authkey"
-          private: yes
 
     - name: Setup Tailscale repository and install Tailscale package
       include_tasks: 
