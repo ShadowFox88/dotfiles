@@ -39,7 +39,3 @@
   become: yes
   command: tailscale up --authkey={{ tailscale_authkey }}
   when: "'Logged out' in tailscale_status.stdout"
-
-- name: Ensure Tailscale is running if installed and logged in
-  command: tailscale up
-  when: tailscale_installed.rc == 0 and 'Logged in' not in tailscale_status.stdout
