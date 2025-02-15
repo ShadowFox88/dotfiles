@@ -7,8 +7,9 @@
       include_tasks: packages/install_packages.yml
     
     - name: Include dust installation
-      become: true
       include_tasks: packages/install_dust.yml
+      apply:
+        become: true
 
     - name: Include Starship installation
       include_tasks: packages/install_starship.yml
@@ -23,12 +24,14 @@
       include_tasks: packages/install_act.yml
 
     - name: Setup Docker repository and install Docker packages
-      become: true
       include_tasks: packages/setup_docker.yml
+      apply:
+        become: true
 
     - name: Setup Tailscale repository and install Tailscale package
-      become: true
       include_tasks: packages/setup_tailscale.yml
+      apply:
+        become: true
 
     - name: Symlink .zshrc and .config
       include_tasks: dotfiles/symlink_dotfiles.yml
