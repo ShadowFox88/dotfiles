@@ -1,14 +1,22 @@
 ---
+- name: Check if the directory exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohmyzsh_dir
+
 - name: Download Oh My Zsh install script
   get_url:
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: /tmp/omzsh-install.sh
     mode: '0755'
+  when: not ohmyzsh_dir.stat.exists
 
 - name: Run Oh My Zsh install script
   command: sh /tmp/omzsh-install.sh
+  when: not ohmyzsh_dir.stat.exists
 
 - name: Remove Oh My Zsh install script
   file:
     path: /tmp/omzsh-install.sh
     state: absent
+  when: not ohmyzsh_dir.stat.exists
