@@ -6,9 +6,9 @@
     state: link
     force: yes
 
-- name: Symlink .config to home directory
+- name: Symlink starship.toml to home directory
   ansible.builtin.file:
-    src: "{{ playbook_dir }}/../.config"
-    dest: "{{ ansible_env.HOME }}/.config"
+    src: "{{ playbook_dir }}/../.config/starship.toml"
+    dest: "{{ ansible_env.HOME }}/.config/starship.toml"
     state: link
     force: yes
