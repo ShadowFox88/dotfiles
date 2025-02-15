@@ -1,21 +1,52 @@
 ---
+- name: Check if Tailscale is installed using which
+  command: which tailscale
+  register: tailscale_installed
+  ignore_errors: true
+
 - name: Setup Tailscale GPG key
   get_url:
     url: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release | lower }}.noarmor.gpg"
     dest: /etc/apt/keyrings/tailscale-archive-keyring.gpg
     mode: "0644"
+  when: tailscale_installed.rc != 0
 
 - name: Add Tailscale repository
   apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release | lower }} main"
     state: present
     filename: tailscale.list
+  when: tailscale_installed.rc != 0
 
 - name: Update apt cache after adding Tailscale repo
   apt:
     update_cache: yes
+  when: tailscale_installed.rc != 0
 
-- name: Install Tailscale package
+- name: Install Tailscale package if not installed
   apt:
     name: tailscale
     state: present
+  when: tailscale_installed.rc != 0
+
+- name: Check Tailscale status
+  command: tailscale status
+  register: tailscale_status
+  ignore_errors: true
+  when: tailscale_installed.rc == 0
+
+- name: Prompt for Tailscale authkey if logged out
+  vars_prompt:
+    - name: "tailscale_authkey"
+      prompt: "Please enter your Tailscale authkey"
+      private: yes
+  when: "'Logged out' in tailscale_status.stdout"
+
+- name: Run sudo tailscale up with authkey if needed
+  become: yes
+  command: tailscale up --authkey={{ tailscale_authkey }}
+  when: "'Logged out' in tailscale_status.stdout"
+
+- name: Ensure Tailscale is running if installed and logged in
+  command: tailscale up
+  when: tailscale_installed.rc == 0 and 'Logged in' not in tailscale_status.stdout
