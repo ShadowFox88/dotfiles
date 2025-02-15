@@ -1,6 +1,4 @@
 ---
-- name: Setup Docker repository and install Docker packages
-
 - name: Set architecture fact for Docker
   set_fact:
     arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }}"
