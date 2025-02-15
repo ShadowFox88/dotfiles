@@ -1,16 +1,14 @@
 ---
-- name: Install Oh My Zsh
-  tasks:
-    - name: Download Oh My Zsh install script
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: /tmp/omzsh-install.sh
-        mode: '0755'
+- name: Download Oh My Zsh install script
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/omzsh-install.sh
+    mode: '0755'
 
-    - name: Run Oh My Zsh install script
-      command: sh /tmp/omzsh-install.sh
+- name: Run Oh My Zsh install script
+  command: sh /tmp/omzsh-install.sh
 
-    - name: Remove Oh My Zsh install script
-      file:
-        path: /tmp/omzsh-install.sh
-        state: absent
+- name: Remove Oh My Zsh install script
+  file:
+    path: /tmp/omzsh-install.sh
+    state: absent
