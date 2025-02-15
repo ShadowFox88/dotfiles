@@ -40,6 +40,6 @@
         apply:
           become: true
 
-    - name: Symlink .zshrc and .config
+    - name: Symlink dotfiles
       include_tasks: 
         file: dotfiles/symlink_dotfiles.yml
