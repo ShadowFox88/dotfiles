@@ -1,6 +1,4 @@
 ---
-- name: Download and install the latest version of dust
-  become: true
 - name: Get the latest release version of dust from GitHub
   uri:
     url: "https://api.github.com/repos/bootandy/dust/releases/latest"
