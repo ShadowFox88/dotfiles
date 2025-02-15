@@ -22,9 +22,14 @@
     dest: "/tmp/"
     remote_src: yes
 
-- name: Move the dust binary to /usr/bin
-  command: mv /tmp/dust-{{ dust_version }}/dust /usr/bin/dust
-  creates: /usr/bin/dust
+- name: Copy the dust binary to /usr/bin
+  become: yes
+  copy:
+    src: "/tmp/dust-{{ dust_version }}/dust"
+    dest: "/usr/bin/dust"
+    mode: '0755'
+  when: not ansible_facts['ansible_facts']['ansible_mounts'] | selectattr('mount', 'equalto', '/usr/bin') | list | length
+
 
 - name: Clean up the tarball and extracted files
   file:
