@@ -19,6 +19,5 @@
       - clang
       - g++
       - build-essential
-      - thefuck
     state: present
     update_cache: true

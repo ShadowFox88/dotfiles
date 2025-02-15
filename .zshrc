@@ -6,7 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' frequency 7
 
-plugins=(git docker fzf gh git-auto-fetch history python safe-paste starship thefuck tmux)
+plugins=(git docker fzf gh git-auto-fetch history python safe-paste starship tmux)
 
 source $ZSH/oh-my-zsh.sh
 
