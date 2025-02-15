@@ -8,7 +8,7 @@
       - eza
       - git
       - fzf
-      - github-cli
+      - gh
       - dust
       - zsh-autosuggestions
       - ca-certificates
