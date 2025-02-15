@@ -6,7 +6,7 @@
     mode: '0755'
 
 - name: Run Starship install script
-  command: sh /tmp/starship-install.sh
+  command: sh /tmp/starship-install.sh -y
 
 - name: Remove Starship install script
   file:
