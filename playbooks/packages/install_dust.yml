@@ -28,7 +28,6 @@
     src: "/tmp/dust-{{ dust_version }}/dust"
     dest: "/usr/bin/dust"
     mode: '0755'
-  when: not ansible_facts['ansible_facts']['ansible_mounts'] | selectattr('mount', 'equalto', '/usr/bin') | list | length
 
 
 - name: Clean up the tarball and extracted files
