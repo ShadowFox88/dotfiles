@@ -12,3 +12,10 @@
     dest: "{{ ansible_env.HOME }}/.config/starship.toml"
     state: link
     force: yes
+
+- name: Symlink aliases to home directory
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/../.zsh/.aliases"
+    dest: "{{ ansible_env.HOME }}/.zsh/.aliases"
+    state: link
+    force: yes
