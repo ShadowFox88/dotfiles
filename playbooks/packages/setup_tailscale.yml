@@ -1,6 +1,5 @@
 ---
 - name: Setup Tailscale repository and install Tailscale package
-  hosts: localhost
   become: yes
   tasks:
     - name: Setup Tailscale GPG key

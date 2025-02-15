@@ -1,6 +1,5 @@
 ---
 - name: Install Act
-  hosts: localhost
   tasks:
     - name: Download Act install script
       get_url:

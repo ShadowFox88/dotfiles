@@ -1,6 +1,5 @@
 ---
 - name: Symlink dotfiles
-  hosts: localhost
   tasks:
     - name: Symlink .zshrc to home directory
       ansible.builtin.file:

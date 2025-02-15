@@ -1,6 +1,5 @@
 ---
 - name: Install Oh My Zsh
-  hosts: localhost
   tasks:
     - name: Download Oh My Zsh install script
       get_url:

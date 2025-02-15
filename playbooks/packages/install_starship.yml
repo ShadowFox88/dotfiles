@@ -1,6 +1,5 @@
 ---
 - name: Install Starship prompt
-  hosts: localhost
   tasks:
     - name: Download Starship install script
       get_url:

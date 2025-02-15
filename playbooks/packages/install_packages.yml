@@ -1,6 +1,5 @@
 ---
 - name: Install required basic packages
-  hosts: localhost
   become: true
   tasks:
     - name: Install common packages via apt

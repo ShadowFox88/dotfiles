@@ -1,6 +1,5 @@
 ---
 - name: Install Atuin
-  hosts: localhost
   tasks:
     - name: Download Atuin install script
       get_url:

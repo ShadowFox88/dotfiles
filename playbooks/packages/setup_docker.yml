@@ -1,6 +1,5 @@
 ---
 - name: Setup Docker repository and install Docker packages
-  hosts: localhost
   become: yes
   tasks:
     - name: Set architecture fact for Docker
