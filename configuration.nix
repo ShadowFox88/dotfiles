@@ -87,6 +87,7 @@
     fuzzel
     git
     gh
+    swaylock
   ];
 
   nixpkgs.config.allowUnfreePredicate =
