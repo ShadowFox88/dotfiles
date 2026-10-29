@@ -86,6 +86,7 @@
     alacritty
     fuzzel
     git
+    gh
   ];
 
   nixpkgs.config.allowUnfreePredicate =
