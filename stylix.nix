@@ -14,8 +14,12 @@
         popups = 10;
       };
       sansSerif = {
-        package = pkgs.inter;
-        name = "Inter";
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
+      };
+      serif = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrainsMono Nerd Font";
       };
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;

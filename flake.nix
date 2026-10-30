@@ -5,23 +5,28 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {                                  # new
-      url = "github:nix-community/stylix";      # new
-      inputs.nixpkgs.follows = "nixpkgs";       # new
-    };                                          # new
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helium = {
+      url = "github:amaanq/helium-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, stylix, ... }: {   # stylix added
+  outputs = { nixpkgs, home-manager, stylix, helium, ... }: {
     nixosConfigurations.hades = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
-        ./stylix.nix                            # new
-        stylix.nixosModules.stylix              # new
+        ./stylix.nix
+        stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit helium; };
           home-manager.users.vahin = import ./home.nix;
         }
       ];
