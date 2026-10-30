@@ -44,10 +44,30 @@
   hardware.nvidia.open = true;
   hardware.graphics.enable = true;
 
-  # Session
-  services.displayManager.sddm = {
+  # Bluetooth
+  hardware.bluetooth = {
     enable = true;
-    wayland.enable = true;
+    powerOnBoot = true;
+  };
+
+  # Audio
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true; # if not already enabled
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment the following
+    #jack.enable = true;
+  };
+
+  # Session
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+      user = "greeter";
+    };
   };
   programs.niri.enable = true;
 
@@ -57,13 +77,17 @@
     enable = true;
     polkitPolicyOwners = [ "vahin" ];
   };
+  programs.dms-shell.enable = true;
 
   environment.systemPackages = with pkgs; [
+    kitty
+    vesktop
     alacritty
     fuzzel
     git
     gh
     swaylock
+    fastfetch
   ];
 
   # Fonts
@@ -73,9 +97,10 @@
       inter
       nerd-fonts.jetbrains-mono
       noto-fonts-color-emoji
+      lmodern
     ];
     fontconfig.defaultFonts = {
-      sansSerif = [ "Inter" ];
+      sansSerif = [ "JetBrainsMono Nerd Font" ];
       serif = [ "Noto Serif" ];
       monospace = [ "JetBrainsMono Nerd Font" ];
       emoji = [ "Noto Color Emoji" ];
