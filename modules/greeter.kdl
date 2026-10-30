@@ -1,0 +1,9 @@
+output "HDMI-A-5" {
+    off
+}
+
+output "DP-4" {
+    focus-at-startup
+}
+
+spawn-sh-at-startup "kitty --start-as=fullscreen tuigreet --cmd niri-session; niri msg action quit --skip-confirmation"

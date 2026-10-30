@@ -4,7 +4,7 @@
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+      command = "${pkgs.niri}/bin/niri -c ${./greeter.kdl}";
       user = "greeter";
     };
   };
