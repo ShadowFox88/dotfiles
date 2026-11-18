@@ -1,6 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/hyprland.nix
     ./modules/boot.nix
     ./modules/networking.nix
     ./modules/locale.nix
