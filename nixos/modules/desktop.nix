@@ -13,4 +13,5 @@
   };
 
   programs.niri.enable = true;
+  boot.plymouth.enable = true; # untested for now.
 }
