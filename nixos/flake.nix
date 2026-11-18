@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helium = {
-      url = "github:amaanq/helium-flake";
+      url = "github:ShadowFox88/nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

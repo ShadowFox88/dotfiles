@@ -14,6 +14,11 @@ let
   '';
 in
 {
+  fonts = {
+    enableDefaultPackages = true;
+    packages = [ pkgs.lmodern ];
+  };
+
   services.greetd = {
     enable = true;
     settings.default_session = {
@@ -23,4 +28,9 @@ in
   };
 
   programs.niri.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
 }

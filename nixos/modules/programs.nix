@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  # apps that need system stuff otherwise they go into home manager.
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
@@ -8,5 +9,13 @@
   };
   programs.dux-shell.enable = true;
 
-  environment.systemPackages = [ pkgs.git ];
+  # dev stuff
+  programs.git.enable = true;
+  programs.nix-ld.enable = true;
+
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "rebuild" ''
+      sudo nixos-rebuild "''${1:-switch}" --flake /etc/nixos#hades
+    '')
+  ];
 }
