@@ -14,6 +14,7 @@
     ./modules/programs.nix
     ./modules/fonts.nix
     ./modules/terminal.nix
+    ./modules/development.nix
   ];
 
   system.stateVersion = "26.05";
