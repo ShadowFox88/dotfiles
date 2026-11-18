@@ -9,6 +9,7 @@
   programs.gh.enable = true;
   programs.jq.enable = true;
   programs.ripgrep.enable = true;
+  programs.prismlauncher.enable = true;
 
   home.packages = with pkgs; [
     nixd
