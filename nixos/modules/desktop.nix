@@ -1,36 +1,16 @@
 { pkgs, ... }:
 
-let
-  greeterConfig = pkgs.writeText "greeter.kdl" ''
-    output "HDMI-A-5" {
-        off
-    }
-
-    output "DP-4" {
-        focus-at-startup
-    }
-
-    spawn-sh-at-startup "XDG_CACHE_HOME=/tmp ${pkgs.kitty}/bin/kitty --start-as=fullscreen ${pkgs.tuigreet}/bin/tuigreet --time --cmd ${pkgs.niri}/bin/niri-session; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation"
-  '';
-in
 {
   fonts = {
     enableDefaultPackages = true;
     packages = [ pkgs.lmodern ];
   };
 
-  services.greetd = {
+  services.displayManager.dux-greeter = {
     enable = true;
-    settings.default_session = {
-      command = "${pkgs.niri}/bin/niri -c ${greeterConfig}";
-      user = "greeter";
-    };
+    compositor.name = "niri";
+    configHome = "/home/vahin";
   };
 
   programs.niri.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
 }

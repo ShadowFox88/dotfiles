@@ -4,7 +4,6 @@
     ./modules/core.nix
     ./modules/hardware.nix
     ./modules/desktop.nix
-    ./modules/development.nix
     ./modules/programs.nix
   ];
 
