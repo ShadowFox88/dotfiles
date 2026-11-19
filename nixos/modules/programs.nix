@@ -13,6 +13,12 @@
   programs.git.enable = true;
   programs.nix-ld.enable = true;
 
+  # file manager
+  programs.thunar.enable = true;
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+  services.udisks2.enable = true;
+
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "rebuild" ''
       sudo nixos-rebuild "''${1:-switch}" --flake /etc/nixos#hades

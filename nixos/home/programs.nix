@@ -1,14 +1,11 @@
-{ pkgs, helium, ... }:
+{ pkgs, helium, config, ... }:
 
 {
   programs.kitty.enable = true;
-
   programs.fuzzel.enable = true;
-
   programs.fastfetch.enable = true;
 
   programs.vesktop.enable = true;
-
   stylix.targets.vesktop.enable = false; # hopefully my colours are good again!
 
   programs.vscode.enable = true;
@@ -17,14 +14,14 @@
   "${pkgs.vscode}/share/icons/hicolor/1024x1024/apps/vscode.png"; # to make the icon appear in fuzzel
 
   programs.gh.enable = true;
-
   programs.jq.enable = true;
-
   programs.ripgrep.enable = true;
-
   programs.prismlauncher.enable = true;
-
   programs.btop.enable = true;
+  programs.yazi.enable = true;
+
+  xdg.configFile."hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/hypr/hyprlock.conf";
+  xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/niri/config.kdl";
 
   home.packages = with pkgs; [
     nixd
@@ -35,8 +32,15 @@
     wget
     tree
     gnumake
+    uv
+    python315
+
+    hyprlock
+    swayidle
 
     polychromatic
+
+    ncspot
 
     helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
   ];
