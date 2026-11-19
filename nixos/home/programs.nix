@@ -36,6 +36,8 @@
     tree
     gnumake
 
+    polychromatic
+
     helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
   ];
 }

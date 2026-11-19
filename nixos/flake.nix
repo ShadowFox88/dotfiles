@@ -19,13 +19,14 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, stylix, helium, ... }: {
+  outputs = { nixpkgs, home-manager, stylix, helium, lanzaboote, ... }: {
     nixosConfigurations.hades = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
         ./stylix.nix
         stylix.nixosModules.stylix
+        lanzaboote.nixosModules.lanzaboote 
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
