@@ -1,4 +1,4 @@
-{ pkgs, helium, config, ... }:
+{ pkgs, personal, config, spotifast, ... }:
 
 {
   programs.kitty.enable = true;
@@ -22,6 +22,7 @@
 
   xdg.configFile."hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/hypr/hyprlock.conf";
   xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/niri/config.kdl";
+  xdg.configFile."dms/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/dms/settings.json";
 
   home.packages = with pkgs; [
     nixd
@@ -40,8 +41,9 @@
 
     polychromatic
 
-    ncspot
+    spotify
 
-    helium.packages.${pkgs.stdenv.hostPlatform.system}.helium
+    personal.packages.${pkgs.stdenv.hostPlatform.system}.helium
+    spotifast.packages."${pkgs.stdenv.hostPlatform.system}".default
   ];
 }

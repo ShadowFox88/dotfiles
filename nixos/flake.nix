@@ -9,7 +9,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helium = {
+    personal = {
       url = "github:ShadowFox88/nix-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -17,9 +17,13 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spotifast = {
+      url = "github:crmne/spotifast";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, stylix, helium, lanzaboote, ... }: {
+  outputs = { nixpkgs, home-manager, stylix, personal, lanzaboote, spotifast, ... }: {
     nixosConfigurations.hades = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -31,7 +35,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = { inherit helium; };
+          home-manager.extraSpecialArgs = { inherit personal spotifast; };
           home-manager.users.vahin = import ./home.nix;
         }
       ];

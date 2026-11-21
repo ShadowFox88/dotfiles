@@ -13,6 +13,9 @@
   programs.git.enable = true;
   programs.nix-ld.enable = true;
 
+  # hopefully this makes soloist work?
+  programs.nix-ld.libraries = [ pkgs.libpulseaudio ];
+
   # file manager
   programs.thunar.enable = true;
   services.gvfs.enable = true;
@@ -23,5 +26,7 @@
     (pkgs.writeShellScriptBin "rebuild" ''
       sudo nixos-rebuild "''${1:-switch}" --flake /etc/nixos#hades
     '')
+
+    pkgs.ncdu
   ];
 }
